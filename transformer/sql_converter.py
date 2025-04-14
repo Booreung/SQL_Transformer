@@ -13,12 +13,12 @@ def convert_sql(query : str, table_map : dict, column_map : dict) -> str:
     converted_query = query
 
     # 테이블 이름 변환
-    for asis_table, tobe_table in table_map.items():
+    for asis_table, tobe_table in reversed(list(table_map.items())):
         # 공백, 줄바꿈, 탭 기준으로 테이블명이 등장하는 위치 고려
         converted_query = re.sub(rf"\b{re.escape(asis_table)}\b", tobe_table, converted_query)
 
     # 컬럼 이름 변환
-    for asis_table, colunms in column_map.items():
+    for asis_table, colunms in reversed(list(column_map.items())):
         # "." 붙은 경우만 (ex: A.user_id → A.id)
         for asis_col, tobe_col in colunms.items():
             converted_query = re.sub(rf"\b{re.escape(asis_col)}\b", tobe_col, converted_query)
