@@ -24,14 +24,20 @@ def main():
     # 4. 변환 결과 생성
     converted_result = []
     for sql in sql_list:
-        converted_sql = convert_sql(sql["query"], table_map, column_map)
-        converted_result.append({
-            "sql_id": sql["sql_id"],
-            "sql_type": sql["sql_type"],
-            "comment": sql["comment"],
-            "original": sql["query"],
-            "converted": converted_sql
-        })
+        if table_map and column_map:
+            converted_sql = convert_sql(sql["query"], table_map, column_map)
+            converted_result.append({
+                "sql_id": sql["sql_id"],
+                "sql_type": sql["sql_type"],
+                "comment": sql["comment"],
+                "original": sql["query"],
+                "converted": converted_sql
+            })
+        else:
+            converted_result.append({
+                "warnings" : "컬럼에 대한 매핑 정보가 없습니다."
+            })
+            break
     
     save_as_json(converted_result, os.path.join("output", "sql_result.json"))
     save_as_excel(converted_result, os.path.join("output", "sql_result.xlsx"))
