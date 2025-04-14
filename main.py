@@ -7,6 +7,7 @@ from parser.sql_extractor import extract_sql_from_xml
 from mapping.mapping_loader import load_mapping_excel
 from transformer.sql_converter import convert_sql
 from generator.sql_writer import save_as_json, save_as_excel
+from difflib import unified_diff
 
 
 def main():
@@ -29,6 +30,10 @@ def main():
     for sql in sql_list:
         if table_map and column_map:
             converted_sql = convert_sql(sql["query"], table_map, column_map)
+
+            ## 변환 비교 출력
+            print_sql_diff(sql["query"], converted_sql)
+
             converted_result.append({
                 "source_file" : sql["source_file"],
                 "sql_id": sql["sql_id"],
@@ -47,6 +52,22 @@ def main():
     save_as_excel(converted_result, os.path.join("output", "sql_result.xlsx"))
 
     print("\n### 전체 SQL 자동 반환 및 저장 완료")
+
+
+def print_sql_diff(asis_sql : str , tobe_sql : str):
+    print("\n ### [SQL 변환 비교]")
+    diff = unified_diff(
+        asis_sql.strip().splitlines(),
+        tobe_sql.strip().splitlines(),
+        fromfile="AS-IS-SQL",
+        tofile="TO-BE-SQL",
+        lineterm=""
+    )
+
+    for line in diff:
+        print(line)
+    
+    print("\n")
 
 
 if __name__ == "__main__":
