@@ -33,6 +33,7 @@ def extract_sql_from_xml(xml_path : str):
                 comment = previous.text.strip()
 
             extracted.append({
+                "source_file" : xml_path,
                 "sql_id" : sql_id,
                 "sql_type" : sql_type,
                 "query" : query,

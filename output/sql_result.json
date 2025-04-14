@@ -1,5 +1,6 @@
 [
   {
+    "source_file": "sample\\sampleSQL.xml",
     "sql_id": "getUserList",
     "sql_type": "select",
     "comment": "사용자 목록 조회",
@@ -7,6 +8,7 @@
     "converted": "SELECT id, name FROM USERS WHERE user_status = 'Y'"
   },
   {
+    "source_file": "sample\\sampleSQL.xml",
     "sql_id": "getOrderList",
     "sql_type": "select",
     "comment": "주문 목록 조회",

@@ -20,7 +20,7 @@ def save_as_excel(data,path):
     ws = wb.active
     ws.title = "SQL 변환 결과"
 
-    headers = ["SQL_ID", "SQL_TYPE", "주석", "AS-IS 쿼리", "TO-BE 쿼리"]
+    headers = ["FILE", "SQL_ID", "SQL_TYPE", "주석", "AS-IS 쿼리", "TO-BE 쿼리"]
 
     ws.append(headers)
 
@@ -31,6 +31,7 @@ def save_as_excel(data,path):
 
     for item in data:
         ws.append([
+            item.get("source_file", "-"),
             item.get("sql_id", "-"),
             item.get("sql_type", "-"),
             item.get("comment", "-"),
