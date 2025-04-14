@@ -43,9 +43,9 @@ def extract_sql_from_xml(xml_path : str):
 
 
 ## 테스트
-if __name__ == "__main__":
-    test_path = r"sample\sampleSQL.xml"
-    result = extract_sql_from_xml(test_path)
+# if __name__ == "__main__":
+#     test_path = r"sample\sampleSQL.xml"
+#     result = extract_sql_from_xml(test_path)
 
-    import json
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+#     import json
+#     print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -27,18 +27,19 @@ def convert_sql(query : str, table_map : dict, column_map : dict) -> str:
 
 
 ## 테스트
-if __name__ == "__main__":
-    from mapping.mapping_loader import load_mapping_excel
-    from parser.sql_extractor import extract_sql_from_xml
+# if __name__ == "__main__":
+#     from mapping.mapping_loader import load_mapping_excel
+#     from parser.sql_extractor import extract_sql_from_xml
 
-    table_map, column_map = load_mapping_excel(r"mapping\sql_mapping.xlsx")
-    sql_items = extract_sql_from_xml(r"sample\sampleSQL.xml")
+#     table_map, column_map = load_mapping_excel(r"sample\sql_mapping.xlsx")
+#     sql_items = extract_sql_from_xml(r"sample\sampleSQL.xml")
 
-    for sql in sql_items:
-        print("\n ### 원본 SQL : ")
-        print(sql["query"])
+#     for sql in sql_items:
+#         print("\n ### 원본 SQL : ")
+#         print(sql["query"])
 
-        converted = convert_sql(sql["query"], table_map, column_map)
+#         converted = convert_sql(sql["query"], table_map, column_map)
 
-        print("\n ### 변환 결과 : ")
-        print(converted)
+#         print("\n ### 변환 결과 : ")
+#         print(converted)
+#         print("\n")

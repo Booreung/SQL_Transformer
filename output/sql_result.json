@@ -1,0 +1,16 @@
+[
+  {
+    "sql_id": "getUserList",
+    "sql_type": "select",
+    "comment": "사용자 목록 조회",
+    "original": "SELECT user_id, user_name FROM TBL_USER WHERE user_status = 'Y'",
+    "converted": "SELECT id, name FROM USERS WHERE user_status = 'Y'"
+  },
+  {
+    "sql_id": "getOrderList",
+    "sql_type": "select",
+    "comment": "주문 목록 조회",
+    "original": "SELECT order_id, user_id, amount FROM TBL_ORDER WHERE amount > 1000",
+    "converted": "SELECT id, id, total_amt FROM ORDERS WHERE total_amt > 1000"
+  }
+]

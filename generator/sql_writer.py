@@ -40,4 +40,4 @@ def save_as_excel(data,path):
 
     os.makedirs(os.path.dirname(path), exist_ok=True)
     wb.save(path)
-    print(f"### Excle 저장 완료 -> {path}")
+    print(f"### Excel 저장 완료 -> {path}")

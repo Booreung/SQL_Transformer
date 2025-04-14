@@ -26,12 +26,12 @@ def load_mapping_excel(excel_path : str):
 
 
 ## 테스트
-if __name__ == "__main__" :
-    table_map, column_map = load_mapping_excel(r"mapping\sql_mapping.xlsx")
+# if __name__ == "__main__" :
+#     table_map, column_map = load_mapping_excel(r"sample\sql_mapping.xlsx")
 
-    print("### [테이블 매핑]")
-    print(table_map)
+#     print("### [테이블 매핑]")
+#     print(table_map)
 
-    print("\n### [컬럼 매핑]")
-    from pprint import pprint
-    pprint(column_map)
+#     print("\n### [컬럼 매핑]")
+#     from pprint import pprint
+#     pprint(column_map)
