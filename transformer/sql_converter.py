@@ -21,7 +21,14 @@ def convert_sql(query : str, table_map : dict, column_map : dict) -> str:
     for asis_table, colunms in reversed(list(column_map.items())):
         # "." 붙은 경우만 (ex: A.user_id → A.id)
         for asis_col, tobe_col in colunms.items():
-            converted_query = re.sub(rf"\b{re.escape(asis_col)}\b", tobe_col, converted_query)
+            converted_query = re.sub(rf"\b{re.escape(asis_col)}\b(?!\s*\()", tobe_col, converted_query)
+
+            converted_query = re.sub(rf"\b(\w+)\.{re.escape(asis_col)}\b", rf"\1.{tobe_col}",converted_query)
+
+    # 중복 AS 제거
+    converted_query = re.sub(r'\bAS\s+\w+\s+AS\s+(\w+)', r'AS \1', converted_query, flags=re.IGNORECASE)
+
+    converted_query = re.sub(r'\bAS\s+(\w+)\s*,\s*AS\s+(\w+)', r'AS \2', converted_query, flags=re.IGNORECASE)
 
     return converted_query
 
