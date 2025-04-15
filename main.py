@@ -32,7 +32,7 @@ def main():
             converted_sql = convert_sql(sql["query"], table_map, column_map)
 
             ## 변환 비교 출력
-            print_sql_diff(sql["query"], converted_sql)
+            print_sql_diff(sql["query"], converted_sql, sql["sql_id"], sql["source_file"])
 
             converted_result.append({
                 "source_file" : sql["source_file"],
@@ -54,8 +54,9 @@ def main():
     print("\n### 전체 SQL 자동 반환 및 저장 완료")
 
 
-def print_sql_diff(asis_sql : str , tobe_sql : str):
-    print("\n ### [SQL 변환 비교]")
+def print_sql_diff(asis_sql : str , tobe_sql : str, sql_id :str = "", source_file : str = ""):
+    print(f"\n ### [SQL 변환 비교] - SQL ID: {sql_id} / Source: {source_file} ")
+    print("-" * 60)
     diff = unified_diff(
         asis_sql.strip().splitlines(),
         tobe_sql.strip().splitlines(),
@@ -66,7 +67,8 @@ def print_sql_diff(asis_sql : str , tobe_sql : str):
 
     for line in diff:
         print(line)
-    
+        
+    print("-" * 60)
     print("\n")
 
 
