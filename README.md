@@ -59,3 +59,27 @@ sql_transformer/
 │ └── sampleSQL.xml # 테스트용 SQL 
 
 │ └── sql_mapping.xlsx # 테이블/컬럼 매핑 엑셀
+
+
+---
+
+## 📁 실행
+
+```bash
+
+        python main.py
+
+```
+
+>결과는 output/sql_result.json, output/sql_result.xlsx 로 저장됩니다
+>변환 전/후 SQL은 콘솔에 비교(diff) 형식으로 출력됩니다.
+
+---
+
+## 📌 목적
+100% 완벽한 SQL 변환이 아니라,
+개발자가 반복되는 수작업을 덜고 빠르게 수정 방향을 파악하도록 돕는 도구입니다.
+
+
+---
+
