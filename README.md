@@ -60,6 +60,14 @@ sql_transformer/
 
 │ └── sql_mapping.xlsx # 테이블/컬럼 매핑 엑셀
 
+│
+
+├── output/ 
+
+│ └── sql_result.json # 변환 결과 JSON 저장 
+
+│ └── sql_result.xlsx # 변환 결과 EXCEL 저장 
+
 
 ---
 
