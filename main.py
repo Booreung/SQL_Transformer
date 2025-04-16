@@ -73,4 +73,9 @@ def print_sql_diff(asis_sql : str , tobe_sql : str, sql_id :str = "", source_fil
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"\n[예외 발생] {e}")
+    finally:
+        input("\n\n[프로그램 종료] 엔터를 눌러 창을 닫습니다...")
