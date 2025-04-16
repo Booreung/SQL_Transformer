@@ -62,7 +62,7 @@ def print_sql_diff(asis_sql : str , tobe_sql : str, sql_id :str = "", source_fil
         tobe_sql.strip().splitlines(),
         fromfile="AS-IS-SQL",
         tofile="TO-BE-SQL",
-        lineterm=""
+        lineterm="\n"
     )
 
     for line in diff:
