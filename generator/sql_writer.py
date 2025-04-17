@@ -10,8 +10,14 @@ from openpyxl.styles import Font, Alignment
 
 def save_as_json(data, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    
+    class CustomEncoder(json.JSONEncoder):
+        def encode(self, obj):
+            text = super().encode(obj)
+            return text.replace('\\n', '\n')
+    
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+        json.dump(data, f, indent=2, cls=CustomEncoder, ensure_ascii=False)
     print(f"### 저장 완료 -> {path}")
 
 

@@ -25,7 +25,7 @@ def extract_sql_from_xml(xml_path : str):
             sql_id = elem.attrib.get("id", "")
             sql_type = elem.tag
             sql_raw = "".join(elem.itertext()).strip()
-            query = re.sub(r'\s+', ' ', sql_raw)
+            # query = re.sub(r'\s+', ' ', sql_raw)
 
             comment = ""
             previous = elem.getprevious()
@@ -36,7 +36,7 @@ def extract_sql_from_xml(xml_path : str):
                 "source_file" : xml_path,
                 "sql_id" : sql_id,
                 "sql_type" : sql_type,
-                "query" : query,
+                "query" : sql_raw.strip(),
                 "comment" : comment
             })
 

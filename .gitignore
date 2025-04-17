@@ -557,4 +557,9 @@ $RECYCLE.BIN/
 *.java
 *.xml
 
+# output folder
+/output/
+*.json
+*.xlsx
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,python,vs

@@ -8,6 +8,9 @@ from mapping.mapping_loader import load_mapping_excel
 from transformer.sql_converter import convert_sql
 from generator.sql_writer import save_as_json, save_as_excel
 from difflib import unified_diff
+from colorama import Fore, Style, init
+
+init(autoreset=True)
 
 
 def main():
@@ -46,6 +49,7 @@ def main():
             converted_result.append({
                 "warnings" : "컬럼에 대한 매핑 정보가 없습니다."
             })
+            
             break
     
     save_as_json(converted_result, os.path.join("output", "sql_result.json"))
@@ -56,21 +60,32 @@ def main():
 
 def print_sql_diff(asis_sql : str , tobe_sql : str, sql_id :str = "", source_file : str = ""):
     print(f"\n ### [SQL 변환 비교] - SQL ID: {sql_id} / Source: {source_file} ")
-    print("-" * 60)
+    print("\n" + "-"*60)
+    print("--- AS-IS-SQL\n")
+    print(asis_sql.strip())
+    print("\n" + "+"*60)
+    print("+++ TO-BE-SQL\n")
+    print(tobe_sql.strip())
+    print("\n" + "-"*60)
+    print(">>> SQL DIFF 비교 결과 ↓↓↓\n")
+
     diff = unified_diff(
         asis_sql.strip().splitlines(),
         tobe_sql.strip().splitlines(),
-        fromfile="AS-IS-SQL",
-        tofile="TO-BE-SQL",
-        lineterm="\n"
+        lineterm=""
     )
 
     for line in diff:
-        print(line)
-        
-    print("-" * 60)
-    print("\n")
+        if line.startswith("+") and not line.startswith("+++"):
+            print(Fore.GREEN + line)
+        elif line.startswith("-") and not line.startswith("---"):
+            print(Fore.RED + line)
+        elif line.startswith("@@"):
+            print(Fore.MAGENTA + line)
+        else:
+            print(Style.DIM + line)
 
+    print("-"*60 + "\n")
 
 if __name__ == "__main__":
     try:
